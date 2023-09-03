@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-#!/bin/python3
-
 import math
 import os
 import random
@@ -28,14 +26,12 @@ class Trie:
         w_len = len(word)
         sub = ""
         for char in word:
-            # if char already exist in trie then just add it to the substring
+            # if char already exist in trie then just add it to the substring to retrieve the prefix
             if temp.children.get(char):
                 sub += char
-            # check wheter the prefix is completed in trie or the prefix
+            # check wheter the prefix is completed in trie or the word is shorter then the prefix
             if temp.is_complete or len(sub) == w_len:
-                # print(temp.is_complete, sub, word)
                 return True
-            # print(temp.is_complete, sub, word)
             if not temp.children.get(char):
                 temp.children[char] = Node()
             temp = temp.children[char]
@@ -44,7 +40,6 @@ class Trie:
 
 
 def noPrefix(words):
-    # Write your code here
     trie = Trie()
     for word in words:
         if trie.insert(word):
